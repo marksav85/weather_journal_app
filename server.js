@@ -8,6 +8,7 @@ const express = require('express');
 const app = express();
 
 /* Middleware*/
+const bodyParser = require('body-parser');
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ const port = 8000
 const server = app.listen(port, listening);
 function listening() {
   console.log('running on localhost: ${port}');
+  console.log('Success!')
 };
 
 // Callback to debug
@@ -34,6 +36,7 @@ app.get('/all', sendData);
 // Callback function to complete GET '/all'
 function sendData (request, response) {
   response.send(projectData);
+  console.log('success')
 };
 
 // Post Route
