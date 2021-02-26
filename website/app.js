@@ -1,17 +1,19 @@
+/*
+
 // Personal API Key for OpenWeatherMap API
-let baseURL =
-let apiKey =
+let baseURL = api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+let apiKey = 261d1154112d39d61aa67532a79fcb31
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 
-/* Function called by event listener */
+/* Function called by event listener
 function performAction(e){
 const toDO =  document.getElementById('alsoToDO').value;
 getAnimal(baseURL,toDO, apiKey)
 }
 
-/* Function to GET Web API Data*/
+/* Function to GET Web API Data
 const toDO = async (baseURL, alsoToDO, key)=>{
 const res = await fetch(baseURL+alsoToDO+key)
   try {
@@ -24,7 +26,7 @@ const data = await res.json();
   }
 }
 
-/* Function to POST data */
+/* Function to POST data*/
 const postData = async ( url = '', data = {})=>{
   console.log(data)
     const response = await fetch(url, {
@@ -46,9 +48,9 @@ const postData = async ( url = '', data = {})=>{
     }
 }
 
-postData('/addAnimal', {animal:'horse'});
+postData('/add', {temperature:'Warm', date: 'today', user: 'happy'});
 
-/* Function to GET Project Data */
+/* Function to GET Project Data
 const retrieveData = async (url='') =>{
   const request = await fetch(url);
   try {
