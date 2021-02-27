@@ -24,7 +24,7 @@ app.use(express.static('website'));
 const port = 8000
 const server = app.listen(port, listening);
 function listening() {
-  console.log('running on localhost: ${port}');
+  console.log('running on localhost: ' + port);
   console.log('Success!')
 };
 
@@ -34,9 +34,9 @@ function listening() {
 app.get('/all', sendData);
 
 // Callback function to complete GET '/all'
-function sendData (request, response) {
-  response.send(projectData);
-  console.log('success')
+function sendData (req, res) {
+  res.send(projectData);
+  console.log('winner')
 };
 
 // Post Route
@@ -44,4 +44,5 @@ app.post('/add', postData);
 
 function postData(req, res) {
     res.send('POST received');
+    console.log(postData);
 }
