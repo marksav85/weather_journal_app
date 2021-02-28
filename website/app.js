@@ -1,28 +1,51 @@
-/*
+
 
 // Personal API Key for OpenWeatherMap API
-let baseURL = api.openweathermap.org/data/2.5/weather?zip={city name}&appid={API key}
-let apiKey = 261d1154112d39d61aa67532a79fcb31
+let baseURL = 'api.openweathermap.org/data/2.5/weather?zip=';
+let apiKey = '261d1154112d39d61aa67532a79fcb31';
 
 /* Global Variables */
 
 // Create a new date instance dynamically with JS
-/*let d = new Date();
+let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 
-/* Function called by event listener
+// Function called by event listener
 function performAction(e){
-const zipCode =  document.getElementById('zip').value;
-const mood = document.getElementById('feelings').value;
-getWeather(baseURL,zipCode, apiKey)
+  const zipCode = document.getElementById('zip').value;
+  const mood = document.getElementById('feelings').value;
+  getWeather('/projectData',)
+  // New Syntax!
+  .then(function(data){
+    // Add data
+    console.log(data);
+    postData('/add', {temperature: data.main.temp, date: newDate, user: mood});
+  })
+  .then(
+    updateUI()
+  )
 }
 
-/* Function to GET Web API Data
+const updateUI = async () => {
+  const request = await fetch('/all');
+  try{
+    const allData = await request.json();
+    document.getElementById('date').innerHTML = allData[0].date;
+    document.getElementById('temp').innerHTML = allData[0].temperature;
+    document.getElementById('content').innerHTML = allData[0].user;
+
+  }catch(error){
+    console.log("error", error);
+  }
+}
+
+
+// Function to GET Web API Data
 const getWeather = async (baseURL, zipCode, key)=>{
-const res = await fetch(baseURL+zipCode+''&appid='+key)
+const res = await fetch(baseURL + zipCode + '&appid=' + key)
   try {
 const data = await res.json();
     console.log(data)
@@ -33,7 +56,7 @@ const data = await res.json();
   }
 }
 
-/* Function to POST data*/
+// Function to POST data
 const postData = async ( url = '', data = {})=>{
   console.log(data)
     const response = await fetch(url, {
@@ -55,9 +78,9 @@ const postData = async ( url = '', data = {})=>{
     }
 }
 
-postData('/add', {temperature:'Warm', date: 'today', user: 'happy'});
 
-/* Function to GET Project Data
+
+// Function to GET Project Data
 const retrieveData = async (url='') =>{
   const request = await fetch(url);
   try {
