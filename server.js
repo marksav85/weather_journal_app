@@ -40,9 +40,12 @@ function sendData (req, res) {
 };
 
 // Post Route
-app.post('/add', postData);
+app.post('/add', addData);
 
-function postData(req, res) {
-    res.send('POST received');
-    console.log(postData);
+function addData(req, res) {
+  projectData.temperature = req.body.temperature;
+  projectData.date = req.body.date;
+  projectData.user = req.body.user;
+  res.end();
+  console.log(projectData)
 }
