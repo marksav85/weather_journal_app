@@ -39,6 +39,7 @@ const updateUI = async () => {
     document.getElementById('date').innerHTML = allData.date;
     /*document.getElementById('temp').innerHTML = allData[0].temperature;*/
     document.getElementById('content').innerHTML = allData.user;
+    console.log(allData)
 
   }catch(error){
     console.log("error", error);
@@ -49,6 +50,7 @@ const updateUI = async () => {
 // Function to GET Web API Data
 const getWeather = async (baseURL, code, apiKey)=>{
   const res = await fetch(fullKey);
+  console.log(res);
   try {
       const data = await res.json();
       console.log(data)
@@ -60,8 +62,7 @@ const getWeather = async (baseURL, code, apiKey)=>{
 
 // Function to POST data
 const postData = async ( url = '', data = {})=>{
-  console.log(data)
-    const response = await fetch(url, {
+    const req = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
@@ -71,15 +72,13 @@ const postData = async ( url = '', data = {})=>{
   });
 
     try {
-      const newData = await response.json();
+      const newData = await req.json();
       console.log(newData);
       return newData
     }catch(error) {
       console.log("three", error);
     }
 }
-
-
 
 // Function to GET Project Data
 const retrieveData = async (url='') =>{
