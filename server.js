@@ -43,13 +43,7 @@ function sendData (req, res) {
 app.post('/add', addData);
 
 function addData(req, res) {
-
-  newEntry = {
-    temperature: req.body.temperature,
-    date: req.body.date,
-    user: req.body.user
-  }
-
-  projectData.push(newEntry)
-  console.log(projectData)
+  projectData.date = req.body.date;
+  projectData.user = req.body.user;
+  console.log(projectData);
 }
