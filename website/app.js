@@ -5,7 +5,6 @@ let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 let apiKey = '&APPID=32dfb725187c3e7ecbc5c4ef2895ba90';
 
 /* Global Variables */
-
 let local = 'http://localhost:8000/';
 
 // Create a new date instance dynamically with JS
@@ -20,18 +19,26 @@ function performAction(e){
   const zipCode = document.getElementById('zip').value;
   const mood = document.getElementById('feelings').value;
   getWeather(baseURL, zipCode, apiKey)
-  // New Syntax!
   .then(function(data){
     // Add data
-    console.log('adding data')
-    postData('http://localhost:8000/add', {date: newDate, temperature: data.main.temp, user: mood})
-    console.log('dataPosted')
+    postData('http://localhost:8000/add', {date: newDate, temperature: data.main.temp, user: mood});
     })
   .then(function(){
-    console.log('updating UI')
     updateUI()
   })
+}
 
+// Function to update UI
+const updateUI = async () => {
+  const request = await fetch('http://localhost:8000/all');
+  try{
+    const allData = await request.json();
+    document.getElementById('date').innerHTML = allData.date;
+    document.getElementById('temp').innerHTML = allData.temp;
+    document.getElementById('content').innerHTML = allData.user;
+  }catch(error){
+    console.log("Error", error);
+  }
 }
 
 // Function to GET Web API Data
@@ -40,8 +47,7 @@ const getWeather = async (baseURL, code, apiKey)=>{
   console.log(res);
   try {
       const data = await res.json();
-      console.log('getWeatherData')
-      console.log(data)
+      console.log(data);
       return data;
   }catch(error) {
     console.log("Error", error);
@@ -57,30 +63,12 @@ const postData = async ( url = '', data = {})=>{
         'Content-Type': 'application/json',
     },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
-  });
-
+  })
     try {
       const newData = await req.json();
-      console.log('newData')
       console.log(newData);
-
       return newData
     }catch(error) {
       console.log("Error", error);
     }
-}
-
-// Function to GET Project Data
-
-const updateUI = async () => {
-  const request = await fetch('http://localhost:8000/all');
-  try{
-    const allData = await request.json();
-    console.log('updating html')
-    document.getElementById('date').innerHTML = allData.date;
-    document.getElementById('temp').innerHTML = allData.temp;
-    document.getElementById('content').innerHTML = allData.user;
-  }catch(error){
-    console.log("Error", error);
-  }
 }
