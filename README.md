@@ -1,10 +1,26 @@
-# Weather-Journal App Project
+## Date created
+23/02/2021
 
-## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
+## Project Title
+Weather-Journal App
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## Description
+This project creates an asynchronous web app that uses Web API from _OpenWeatherMap.org_ and user data to dynamically update a Weather Journal.
+
+## Implementation
+This requires modifying the *server.js* file and the *website/app.js* file using **Node** and **Express** packages, which will need to be installed locally using npm. Extra dependencies to be installed are _body-parser_ and _cors_.
+
+## Files used
+_index.html_, _styles.css_ from Udacity Weather-Journal App Project as
+part of the Front-End Nanodegree Program
 
 ## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+OpenWeatherMap.org Web API developer credentials
+
+## Language
+JavaScript
+HTML
+CSS
+
+## Credits
+Udacity
