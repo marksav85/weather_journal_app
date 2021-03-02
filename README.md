@@ -18,9 +18,7 @@ part of the Front-End Nanodegree Program
 OpenWeatherMap.org Web API developer credentials
 
 ## Language
-JavaScript
-HTML
-CSS
+**JavaScript**, **HTML** ,**CSS**
 
 ## Credits
 Udacity
