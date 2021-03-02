@@ -23,25 +23,16 @@ function performAction(e){
   // New Syntax!
   .then(function(data){
     // Add data
-    postData('http://localhost:8000/add', {date: newDate, temperature: data.main.temp, user: mood});
-  })
-  .then(
+    console.log('adding data')
+    postData('http://localhost:8000/add', {date: newDate, temperature: data.main.temp, user: mood})
+    console.log('dataPosted')
+    })
+  .then(function(){
+    console.log('updating UI')
     updateUI()
-  )
-}
+  })
 
-const updateUI = async () => {
-  const request = await fetch('http://localhost:8000/all');
-  try{
-    const allData = await request.json();
-    document.getElementById('date').innerHTML = allData.date;
-    document.getElementById('temp').innerHTML = allData.temp;
-    document.getElementById('content').innerHTML = allData.user;
-  }catch(error){
-    console.log("Error", error);
-  }
 }
-
 
 // Function to GET Web API Data
 const getWeather = async (baseURL, code, apiKey)=>{
@@ -49,6 +40,7 @@ const getWeather = async (baseURL, code, apiKey)=>{
   console.log(res);
   try {
       const data = await res.json();
+      console.log('getWeatherData')
       console.log(data)
       return data;
   }catch(error) {
@@ -69,7 +61,9 @@ const postData = async ( url = '', data = {})=>{
 
     try {
       const newData = await req.json();
+      console.log('newData')
       console.log(newData);
+
       return newData
     }catch(error) {
       console.log("Error", error);
@@ -77,14 +71,16 @@ const postData = async ( url = '', data = {})=>{
 }
 
 // Function to GET Project Data
-const retrieveData = async (url='') =>{
-  const request = await fetch(url);
-  try {
-  // Transform into JSON
-  const allData = await request.json()
-  }
-  catch(error) {
+
+const updateUI = async () => {
+  const request = await fetch('http://localhost:8000/all');
+  try{
+    const allData = await request.json();
+    console.log('updating html')
+    document.getElementById('date').innerHTML = allData.date;
+    document.getElementById('temp').innerHTML = allData.temp;
+    document.getElementById('content').innerHTML = allData.user;
+  }catch(error){
     console.log("Error", error);
-    // appropriately handle the error
   }
-};
+}
