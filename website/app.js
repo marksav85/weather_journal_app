@@ -1,11 +1,11 @@
 
 
 // Personal API Key for OpenWeatherMap API
-let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-let apiKey = '&APPID=32dfb725187c3e7ecbc5c4ef2895ba90';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
+const apiKey = '&APPID=32dfb725187c3e7ecbc5c4ef2895ba90';
 
 /* Global Variables */
-let local = 'http://localhost:8000/';
+const local = 'http://localhost:8000/';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
