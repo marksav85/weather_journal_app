@@ -24,8 +24,7 @@ function performAction(e){
   // New Syntax!
   .then(function(data){
     // Add data
-    console.log(data);
-    postData('http://localhost:8000/add', {date: newDate, user: mood});
+    postData('http://localhost:8000/add', {date: newDate, temperature: data.main.temp, user: mood});
   })
   .then(
     updateUI()
@@ -37,10 +36,8 @@ const updateUI = async () => {
   try{
     const allData = await request.json();
     document.getElementById('date').innerHTML = allData.date;
-    /*document.getElementById('temp').innerHTML = allData[0].temperature;*/
+    document.getElementById('temp').innerHTML = allData.temp;
     document.getElementById('content').innerHTML = allData.user;
-    console.log(allData)
-
   }catch(error){
     console.log("error", error);
   }
